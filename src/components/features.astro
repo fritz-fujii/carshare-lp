@@ -1,66 +1,36 @@
 ---
-import { Icon } from "astro-icon/components";
-import ContentSection from "~/components/content-section.astro";
-import type { FeatureItem } from "~/types";
-
-const features: Array<FeatureItem> = [
-  {
-    title: "Bring Your Own Framework",
-    description:
-      "Build your site using React, Svelte, Vue, Preact, web components, or just plain ol' HTML + JavaScript.",
-    icon: "mdi:handshake",
-  },
-  {
-    title: "100% Static HTML, No JS",
-    description:
-      "Astro renders your entire page to static HTML, removing all JavaScript from your final build by default.",
-    icon: "mdi:feather",
-  },
-  {
-    title: "On-Demand Components",
-    description:
-      "Need some JS? Astro can automatically hydrate interactive components when they become visible on the page. If the user never sees it, they never load it.",
-    icon: "mdi:directions-fork",
-  },
-  {
-    title: "Broad Integration",
-    description:
-      "Astro supports TypeScript, Scoped CSS, CSS Modules, Sass, Tailwind, Markdown, MDX, and any of your favorite npm packages.",
-    icon: "mdi:graph",
-  },
-  {
-    title: "SEO Enabled",
-    description:
-      "Automatic sitemaps, RSS feeds, pagination and collections take the pain out of SEO and syndication.",
-    icon: "mdi:search-web",
-  },
-  {
-    title: "Community",
-    description:
-      "Astro is an open source project powered by hundreds of contributors making thousands of individual contributions.",
-    icon: "mdi:account-group",
-  },
-];
 ---
+<section id="features" class="py-20 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-gray-900 dark:text-white">
+      なぜ IS250C カーシェアを選ぶ？
+    </h2>
 
-<ContentSection title="Features" id="features">
-  <Fragment slot="lead">
-    Astro comes <span class="text-primary">batteries included</span>. It takes
-    the best parts of
-    <span class="text-primary">state-of-the-art</span>
-    tools and adds its own <span class="text-primary">innovations</span>.
-  </Fragment>
-  <ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-    {
-      features.map(({ title, description, icon }) => (
-        <li class="flex flex-col items-center gap-4 border border-default bg-offset p-6">
-          <div class="size-16 rounded-full border-2 border-current p-3">
-            <Icon name={icon} class="size-full" />
-          </div>
-          <p class="text-center font-extrabold text-xl">{title}</p>
-          <p class="text-center text-offset text-sm">{description}</p>
-        </li>
-      ))
-    }
-  </ul>
-</ContentSection>
+    <div class="grid gap-8 md:grid-cols-3">
+      <!-- Card 1 -->
+      <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-3 text-primary">オープンカー体験</h3>
+        <p class="text-gray-600 dark:text-gray-300">
+          電動ハードトップでワンタッチ開閉。四季の風を感じるプレミアムドライブを楽しめます。
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-3 text-primary">下北沢・池ノ上で引き渡し</h3>
+        <p class="text-gray-600 dark:text-gray-300">
+          駅チカ月極駐車場からそのまま出発。渋谷・新宿方面へのアクセスもスムーズ。
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-3 text-primary">手頃な料金</h3>
+        <p class="text-gray-600 dark:text-gray-300">
+          1 日あたり <strong>¥xx,xxx〜</strong>。高級車でも気軽に乗れる価格設定で特別な日を演出。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
