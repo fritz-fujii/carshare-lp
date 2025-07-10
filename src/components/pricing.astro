@@ -1,0 +1,37 @@
+---
+const plans = [
+  { title: "ショート 6h",  price: "¥8,900"  },
+  { title: "ハーフ 12h",   price: "¥10,900" },
+  { title: "1 Day",        price: "¥12,800" },
+  { title: "2 Day",        price: "¥23,000",  badge: "-10%" },
+  { title: "3 Day",        price: "¥32,600",  badge: "-15%" },
+  { title: "1 Week",       price: "¥67,200",  badge: "-25%" },
+  { title: "1 Month",      price: "¥211,000", badge: "-45%" },
+];
+---
+
+<section id="pricing" class="py-20 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-gray-900 dark:text-white">
+      料金プラン
+    </h2>
+
+    <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+      {plans.map(plan => (
+        <div class="relative p-6 bg-white dark:bg-gray-900 rounded-lg shadow border">
+          {plan.badge && (
+            <span class="absolute -top-3 -right-3 bg-primary text-white text-xs px-2 py-1 rounded-full">
+              {plan.badge}
+            </span>
+          )}
+          <h3 class="text-xl font-semibold mb-2">{plan.title}</h3>
+          <p class="text-3xl font-bold mb-4">{plan.price}</p>
+          <a href="https://example.driveshare.jp"
+             class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded transition">
+            予約する
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
