@@ -1,40 +1,50 @@
 ---
-import "@fontsource-variable/inter";
-import Header from "~/components/header.astro";
-import Intro from "~/components/intro.astro";
-import Features from "~/components/features.astro";
-import "~/styles/index.css";
+/* ===== Imports ===== */
+import "@fontsource-variable/inter";     /* フォント */
+import "~/styles/index.css";             /* グローバル CSS */
 
+import Header from "~/components/header.astro";
+import Intro   from "~/components/intro.astro";       // IS250C Hero
+import Features from "~/components/features.astro";   // 3 つの特長
+import Pricing  from "~/components/pricing.astro";    // 料金表
+import Footer   from "~/components/footer.astro";
+
+/* ===== meta 情報 ===== */
 const { generator, site } = Astro;
-const image = new URL("social.jpg", site);
-const description =
-  "Build fast websites, faster. Astro is a new kind of site builder for the modern web. Lightning-fast performance meets powerful developer experience.";
+const description = "レクサスIS250Cで優雅なカーシェア体験—下北沢・池ノ上受け渡し、1日 ¥12,800 から。";
+const image = new URL("/images/social.jpg", site);
 ---
 
 <!doctype html>
-<html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+<html lang="ja" class="h-full motion-safe:scroll-smooth" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="generator" content={generator} />
 
     <title>Lexus IS250C Car Share</title>
     <meta name="description" content={description} />
-
-    <!-- OGP 略 -->
+    <meta property="og:title" content="Lexus IS250C Car Share" />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={site} />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
-  <body
-    class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white"
-  >
+
+  <body class="h-full overflow-x-hidden bg-default text-default">
+    <!-- ナビ -->
     <Header />
 
-    <!-- 最上部に Intro（IS250C Hero） -->
+    <!-- ヒーロー -->
     <Intro />
 
-    <!-- 以下お好みで並べ替え／間引き -->
+    <!-- 本文セクション -->
     <div class="space-y-24 px-8 py-32">
       <Features />
+      <Pricing />
     </div>
+
+    <!-- フッター -->
+    <Footer />
   </body>
 </html>
