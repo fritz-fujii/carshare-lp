@@ -2,16 +2,13 @@
 import { Icon } from "astro-icon/components";
 import type { NavItem } from "~/types";
 
-/* ───────────── ナビ項目 ───────────── */
+/* ─── ナビ項目 ─── ＊Features を除外 */
 const navItems: Array<NavItem> = [
-  { title: "Features",      url: "#features" },
-  // 下記ふたつが無いページでは自動的に無視されるのでそのまま
   { title: "Compatibility", url: "#compatibility" },
   { title: "Showcase",      url: "#showcase" },
 ];
 
-/* ───────────── 言語スイッチ ───────────── */
-const isEN   = Astro.url.pathname.startsWith("/en");
+const isEN = Astro.url.pathname.startsWith("/en");
 const langItem: NavItem = isEN
   ? { title: "JP", url: "/" }
   : { title: "EN", url: "/en/" };
@@ -24,11 +21,9 @@ const menuItems = [...navItems, langItem];
   class="absolute bottom-0 z-20 flex w-full items-center justify-between
          border-b border-transparent px-8 py-4 text-white"
 >
-  <!-- ロゴ -->
-  <a class="flex items-center gap-3 hover:!text-default" href={isEN ? "/en/" : "/"}>
-    <h1 class="sr-only">Astro</h1>
-    <Icon name="logomark" class="size-10" />
-    <Icon name="wordmark" class="hidden h-4 sm:block" />
+  <!-- ★ ロゴ部分をシンプルなテキストリンクに変更 -->
+  <a class="text-lg font-semibold hover:underline" href={isEN ? "/en/" : "/"}>
+    IS250C Car Share
   </a>
 
   <!-- PC ナビ -->
@@ -36,21 +31,14 @@ const menuItems = [...navItems, langItem];
     <ul class="flex items-center gap-6">
       {
         menuItems.map(({ title, url }) => (
-          <li>
-            <a class="text-sm hover:underline" href={url}>{title}</a>
-          </li>
+          <li><a class="text-sm hover:underline" href={url}>{title}</a></li>
         ))
       }
     </ul>
   </nav>
 
   <!-- モバイルハンバーガー -->
-  <button
-    id="open-nav-button"
-    type="button"
-    class="btn sm:hidden"
-    aria-label="Navigation"
-  >
+  <button id="open-nav-button" type="button" class="btn sm:hidden" aria-label="Navigation">
     <Icon name="mdi:menu" class="size-8" />
   </button>
 
@@ -63,18 +51,11 @@ const menuItems = [...navItems, langItem];
             <Icon name="mdi:close" class="size-8" />
           </button>
         </header>
-
-        <div class="flex justify-center">
-          <Icon name="logomark" class="size-16" />
-        </div>
-
         <nav>
           <ul class="flex flex-col">
             {
               menuItems.map(({ title, url }) => (
-                <li>
-                  <a class="block py-4 text-center text-xl" href={url}>{title}</a>
-                </li>
+                <li><a class="block py-4 text-center text-xl" href={url}>{title}</a></li>
               ))
             }
           </ul>
@@ -84,44 +65,37 @@ const menuItems = [...navItems, langItem];
   </div>
 </header>
 
-<!-- ───────────── JS (micro modal) ───────────── -->
 <script>
   import MicroModal from "micromodal";
   import invariant from "tiny-invariant";
 
   const menuModalId = "menu-modal";
-  const header          = document.querySelector("#page-header");
-  const page            = document.documentElement;
-  const menu            = document.querySelector(`#${menuModalId} ul`);
-  const openNavButton   = document.querySelector("#open-nav-button");
-  const closeNavButton  = document.querySelector("#close-nav-button");
+  const header = document.querySelector("#page-header");
+  const page   = document.documentElement;
+  const menu   = document.querySelector(`#${menuModalId} ul`);
+  const openNavButton  = document.querySelector("#open-nav-button");
+  const closeNavButton = document.querySelector("#close-nav-button");
 
   invariant(header && menu && openNavButton && closeNavButton, "header nav elements missing");
 
   openNavButton.addEventListener("click", () => MicroModal.show(menuModalId, { disableScroll: true }));
   closeNavButton.addEventListener("click", () => MicroModal.close(menuModalId));
 
-  /* スクロールでヘッダーを固定 */
   document.addEventListener("scroll", () => {
     const threshold = page.clientHeight - page.scrollTop - header.offsetHeight;
     header.classList.toggle("fixed-header", threshold < 0);
   });
 
-  /* モバイルメニューでリンククリック後に自動で閉じる */
-  menu.addEventListener("click", (e) => {
+  menu.addEventListener("click", e => {
     if ((e.target).tagName === "A") MicroModal.close(menuModalId);
   });
 </script>
 
 <noscript>
-  <style>
-    #open-nav-button { display: none; }
-  </style>
+  <style>#open-nav-button { display: none; }</style>
 </noscript>
 
 <style>
-  .fixed-header {
-    @apply fixed top-0 bottom-auto border-default bg-default text-default;
-  }
-  .modal.is-open { @apply block; }
+  .fixed-header {@apply fixed top-0 bottom-auto border-default bg-default text-default;}
+  .modal.is-open {@apply block;}
 </style>
