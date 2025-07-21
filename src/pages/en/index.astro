@@ -1,0 +1,42 @@
+---
+import "@fontsource-variable/inter";
+import "~/styles/index.css";
+
+import Header   from "~/components/header.astro";
+import Intro    from "~/components/intro-en.astro";
+import Features from "~/components/features-en.astro";
+import Pricing  from "~/components/pricing-en.astro";
+import Footer   from "~/components/footer.astro";
+
+const { generator, site } = Astro;
+const description = "Rent a Lexus IS250C convertible in Tokyo from ¥13,800 per day.";
+const image = new URL("/images/social.jpg", site);
+---
+
+<!doctype html>
+<html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="generator" content={generator} />
+  <title>Lexus IS250C Car-Share Tokyo</title>
+  <meta name="description" content={description} />
+  <meta property="og:title" content="Lexus IS250C Car-Share" />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={image} />
+  <meta property="og:url" content={site + 'en/'} />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+<body class="h-full overflow-x-hidden bg-default text-default">
+  <Header />
+
+  <Intro />
+
+  <div class="space-y-24 px-8 py-32">
+    <Features />
+    <Pricing />
+  </div>
+
+  <Footer />
+</body>
+</html>
