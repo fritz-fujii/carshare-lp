@@ -2,18 +2,12 @@
 import { Icon } from "astro-icon/components";
 import type { NavItem } from "~/types";
 
-/* ─── ナビ項目 ───（現在未使用） */
-const navItems: Array<NavItem> = [
-  // No navigation items currently in use
-];
-
-/* ─── 言語スイッチ ─── */
 const isEN = Astro.url.pathname.startsWith("/en");
 const langItem: NavItem = isEN
   ? { title: "JP", url: "/" }
   : { title: "EN", url: "/en/" };
 
-const menuItems = [...navItems, langItem];
+const menuItems = [langItem];
 ---
 
 <header
