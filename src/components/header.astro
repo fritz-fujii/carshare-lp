@@ -1,99 +1,14 @@
 ---
-import { Icon } from "astro-icon/components";
-import type { NavItem } from "~/types";
-
 const isEN = Astro.url.pathname.startsWith("/en");
-const langItem: NavItem = isEN
-  ? { title: "JP", url: "/" }
-  : { title: "EN", url: "/en/" };
-
-const menuItems = [langItem];
 ---
 
-<header
-  id="page-header"
-  class="absolute bottom-0 z-20 flex w-full items-center justify-between
-         border-b border-transparent px-8 py-4 text-white"
->
-  <!-- テキストロゴ -->
+<header class="absolute top-0 z-20 flex w-full items-center justify-between px-6 py-5 text-white sm:px-8">
   <a class="text-lg font-semibold hover:underline" href={isEN ? "/en/" : "/"}>
     IS250C&nbsp;Car&nbsp;Share
   </a>
-
-  <!-- PC ナビ -->
-  <nav class="hidden sm:block">
-    <ul class="flex items-center gap-6">
-      {menuItems.map(({ title, url }) => (
-        <li><a class="text-sm hover:underline" href={url}>{title}</a></li>
-      ))}
-    </ul>
+  <nav aria-label={isEN ? "Language" : "言語切替"}>
+    <a class="text-sm font-semibold hover:underline" href={isEN ? "/" : "/en/"} lang={isEN ? "ja" : "en"}>
+      {isEN ? "日本語" : "English"}
+    </a>
   </nav>
-
-  <!-- モバイルハンバーガー -->
-  <button id="open-nav-button" type="button" class="btn sm:hidden" aria-label="Navigation">
-    <Icon name="mdi:menu" class="size-8" />
-  </button>
-
-  <!-- モバイルメニュー -->
-  <div id="menu-modal" class="modal hidden" aria-hidden="true">
-    <div class="fixed inset-0 bg-default px-8 py-4 text-default">
-      <div class="space-y-4" role="dialog" aria-modal="true">
-        <header class="text-right">
-          <button id="close-nav-button" type="button" class="btn" aria-label="Close navigation">
-            <Icon name="mdi:close" class="size-8" />
-          </button>
-        </header>
-        <nav>
-          <ul class="flex flex-col">
-            {menuItems.map(({ title, url }) => (
-              <li><a class="block py-4 text-center text-xl" href={url}>{title}</a></li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
 </header>
-
-<!-- ───────────── JS ───────────── -->
-<script>
-  import MicroModal from "micromodal";
-
-  const menuModalId = "menu-modal";
-
-  /* Type-safe Element 取得 */
-  const header = document.getElementById("page-header");
-  const openBtn = document.getElementById("open-nav-button");
-  const closeBtn = document.getElementById("close-nav-button");
-  const menu = document.querySelector(`#${menuModalId} ul`);
-
-  if (header && openBtn && closeBtn && menu) {
-    const page = document.documentElement;
-
-    openBtn.addEventListener("click", () => MicroModal.show(menuModalId, { disableScroll: true }));
-    closeBtn.addEventListener("click", () => MicroModal.close(menuModalId));
-
-    /* スクロールで固定 */
-    document.addEventListener("scroll", () => {
-      const threshold = page.clientHeight - page.scrollTop - (header).offsetHeight;
-      header.classList.toggle("fixed-header", threshold < 0);
-    });
-
-    /* モバイルメニューでリンククリック後に閉じる */
-    menu.addEventListener("click", (e) => {
-      const target = e.target;
-      if (target instanceof HTMLElement && target.tagName === "A") {
-        MicroModal.close(menuModalId);
-      }
-    });
-  }
-</script>
-
-<noscript>
-  <style>#open-nav-button{display:none}</style>
-</noscript>
-
-<style>
-  .fixed-header{@apply fixed top-0 bottom-auto border-default bg-default text-default}
-  .modal.is-open{@apply block}
-</style>

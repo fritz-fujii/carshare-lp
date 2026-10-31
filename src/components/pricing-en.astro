@@ -1,38 +1,41 @@
 ---
-const plans = [
-  { title: "short 6h",     price: "¥8,600"  },
-  { title: "half-day 12h",      price: "¥10,800" },
-  { title: "1 Day",           price: "¥12,800" },
-  { title: "2 Day",           price: "¥23,900",  badge: "-10%" },
-  { title: "3 Day",           price: "¥34,200",  badge: "-15%" },
-  { title: "1 Week",          price: "¥71,500",  badge: "-25%" },
-  { title: "1 Month",         price: "¥226,000", badge: "-45%" },
-];
+// Each additional day is priced at the rate for its band. This keeps the
+// total increasing with duration while rewarding longer bookings.
+const rateForDay = (day: number) => {
+  if (day === 1) return 14800;
+  if (day <= 3) return 13000;
+  if (day <= 6) return 11000;
+  if (day <= 13) return 10000;
+  if (day <= 29) return 8700;
+  return 7500;
+};
+let total = 0;
+const plans = Array.from({ length: 31 }, (_, index) => {
+  const days = index + 1;
+  total += rateForDay(days);
+  return { days, price: total };
+});
 ---
 
 <section id="pricing" class="py-20 bg-gray-50 dark:bg-gray-800">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-gray-900 dark:text-white">
-      price list
+      Pricing
     </h2>
+    <p class="-mt-8 mb-12 text-center text-gray-700 dark:text-gray-300">Total prices in Japanese yen for each booking length. Availability and final terms will be confirmed before payment.</p>
 
-    <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+    <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
       {plans.map((plan) => (
-        <div class="relative p-6 bg-white/90 dark:bg-gray-900 rounded-lg shadow border">
-          {plan.badge && (
-            <span class="absolute -top-3 -right-3 bg-primary text-white text-xs font-semibold px-2 py-1 rounded-full">
-              {plan.badge}
-            </span>
-          )}
-          <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">
-            {plan.title}
+        <div class="rounded-lg border bg-white/90 p-4 shadow dark:bg-gray-900">
+          <h3 class="mb-1 text-base font-semibold text-gray-700 dark:text-gray-300">
+            {plan.days} {plan.days === 1 ? "day" : "days"}
           </h3>
-          <p class="text-3xl font-bold mb-4 text-gray-900 dark:text-gray-200">
-            {plan.price}
-          </p>
-
+          <p class="text-xl font-bold text-gray-900 dark:text-gray-100">¥{plan.price.toLocaleString("en-US")}</p>
         </div>
       ))}
     </div>
+    <p class="mt-8 text-center text-gray-700 dark:text-gray-300">
+      For bookings of 32 days or more, <a href="mailto:fritz@fritz.jp?subject=IS250C%20long-term%20booking%20inquiry" class="font-semibold underline">contact us for a quote</a>.
+    </p>
   </div>
 </section>

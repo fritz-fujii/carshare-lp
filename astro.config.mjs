@@ -1,9 +1,9 @@
-import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://carshare-lp.pages.dev/",
-  integrations: [tailwind(), icon()],
+  build: { inlineStylesheets: "never" },
+  integrations: [icon()],
 });

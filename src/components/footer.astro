@@ -1,14 +1,17 @@
 ---
 import { Icon } from "astro-icon/components";
+const isEN = Astro.url.pathname.startsWith("/en");
 ---
 
 <footer class="relative flex h-40 items-center justify-center bg-gray-50 dark:bg-gray-800">
-  <a
-    href="mailto:fritz@fritz.jp"
-    class="relative flex size-16 items-center justify-center rounded-full
-           bg-blue-600 text-white hover:bg-blue-700 transition"
-  >
-    <span class="sr-only">メールでお問い合わせ</span>
-    <Icon name="mdi:email-outline" class="size-8" />
-  </a>
+  {isEN ? (
+    <a href="mailto:fritz@fritz.jp" class="relative flex size-16 items-center justify-center rounded-full bg-blue-600 text-white transition hover:bg-blue-700">
+      <span class="sr-only">Contact us by email</span>
+      <Icon name="mdi:email-outline" class="size-8" />
+    </a>
+  ) : (
+    <a href="https://drive-share.net/l/is250c/687e87db-c80d-4711-9850-b919a7d94aaa" class="rounded bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700">
+      DriveShare で車両を見る
+    </a>
+  )}
 </footer>
