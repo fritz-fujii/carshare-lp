@@ -1,0 +1,82 @@
+---
+import { Icon } from "astro-icon/components";
+import { topics, type Language } from "~/data/guide";
+interface Props { lang: Language; slug?: string }
+const { lang, slug } = Astro.props;
+const en = lang === "en";
+const home = en ? "/en/" : "/";
+const base = home + "guide/";
+const alternate = (en ? "/guide/" : "/en/guide/") + (slug ? slug + "/" : "");
+const guideTitle = en ? "Driver’s guide" : "ご利用ガイド";
+const items = topics[lang];
+const topic = items.find(item => item.slug === slug);
+const intro = en ? "Choose a guide for your journey in the Lexus IS250C." : "レクサス IS250Cを予約された方へ。知りたい手順をお選びください。";
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{topic?.title ?? guideTitle} | IS250C Car Share</title>
+  <meta name="description" content={topic?.summary ?? intro} />
+  <link rel="alternate" hreflang={en ? "ja" : "en"} href={alternate} />
+</head>
+<body>
+  <header><div class="inner bar">
+    <a href={home} class="brand">IS250C <span>Car Share</span></a>
+    <a class="language" href={alternate} lang={en ? "ja" : "en"}><Icon name="mdi:translate" />{en ? "日本語" : "English"}</a>
+  </div></header>
+  <main>
+    {!topic ? <>
+      <section class="hero"><div class="inner">
+        <h1>{guideTitle}</h1><p>{intro}</p>
+      </div></section>
+      <nav class="inner grid" aria-label={guideTitle}>
+        {items.map(item => <a class="card" href={base + item.slug + "/"}>
+          <Icon class="symbol" name={item.icon} />
+          <div><h2>{item.title}</h2><p>{item.summary}</p></div>
+          <Icon class="chevron" name="mdi:chevron-right" />
+        </a>)}
+      </nav>
+    </> : <article class="inner article">
+      <a class="back" href={base}><Icon name="mdi:chevron-left" />{guideTitle}</a>
+      <div class="title"><Icon class="symbol" name={topic.icon} /><h1>{topic.title}</h1></div>
+      <p class="lead">{topic.summary}</p>
+      <ol class="steps">
+        {topic.steps.map(([heading, body]) => <li><h2>{heading}</h2><p>{body}</p></li>)}
+      </ol>
+      {topic.note && <aside><h2>{en ? "Need help?" : "困ったときは"}</h2><p>{topic.note}</p></aside>}
+      {topic.checklist && <aside><h2>{en ? "Photos to send" : "送る写真はこの3枚"}</h2><ul>{topic.checklist.map(label => <li>{label}</li>)}</ul></aside>}
+      <a class="back bottom" href={base}><Icon name="mdi:chevron-left" />{en ? "All guides" : "ガイド一覧へ"}</a>
+    </article>}
+  </main>
+  <footer><div class="inner"><strong>IS250C Car Share</strong><a href={home}>{en ? "Car share home" : "カーシェアのトップへ"}</a></div></footer>
+</body>
+</html>
+<style>
+  :global(*){box-sizing:border-box}
+  body{margin:0;background:#f7f8fa;color:#182235;font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;line-height:1.75}
+  a{color:inherit;text-decoration:none} a:focus-visible{outline:3px solid #477ccc;outline-offset:4px}
+  .inner{max-width:65rem;margin-inline:auto;padding-inline:clamp(1.2rem,5vw,3rem)}
+  header,footer{background:#152033;color:#fff}
+  .bar,footer .inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:4.1rem}
+  .brand{font-size:1.25rem;font-weight:750}.brand span{font-weight:430}
+  .language,.back{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;font-weight:600}
+  .language svg,.back svg,.chevron{width:1.3rem;height:1.3rem}
+  .hero{background:linear-gradient(85deg,rgba(9,19,34,.93) 8%,rgba(9,19,34,.72) 47%,rgba(9,19,34,.32)),url('/images/hero-bg.jpg') center 52%/cover;color:#fff}
+  .hero .inner{padding-block:clamp(3rem,8vw,6.5rem)}.hero p{max-width:34rem}
+  h1,h2,p{margin:0}h1{line-height:1.28;font-size:clamp(1.95rem,5vw,3.4rem);letter-spacing:-.04em}
+  h2{font-size:clamp(1.08rem,2.5vw,1.32rem);line-height:1.45}
+  .hero p,.lead{margin-top:.9rem}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;padding-block:clamp(1.5rem,5vw,3.25rem)}
+  .card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;padding:1.5rem;background:white;border:1px solid #d8dfe5;border-radius:.65rem}
+  .card:hover,.card:focus-visible{border-color:#58779c;background:#f1f6fa}.card p,.lead,.steps p{color:#405066}
+  .card p{margin-top:.5rem}.symbol{flex:none;width:2rem;height:2rem;color:#355574}
+  .chevron{color:#526880}.article{max-width:51rem;padding-block:1rem 3rem}
+  .title{display:flex;align-items:center;gap:1rem;margin-top:1.3rem}.title h1{font-size:clamp(1.6rem,5vw,2.55rem)}
+  .steps{list-style:none;counter-reset:step;margin:2rem 0 0;padding:0;background:#fff;border:1px solid #d8dfe5;border-radius:.65rem}
+  .steps li{position:relative;counter-increment:step;padding:1.4rem 1.25rem 1.4rem 4rem}
+  .steps li+li{border-top:1px solid #e2e6ea}.steps li::before{content:counter(step);position:absolute;left:1.2rem;top:1.35rem;width:1.8rem;height:1.8rem;text-align:center;line-height:1.8rem;border-radius:50%;background:#203750;color:white;font-weight:700}
+  .steps p,aside p{margin-top:.45rem}aside{margin-top:1.25rem;background:#e9f1f6;border-left:4px solid #587995;padding:1.3rem}
+  aside ul{margin:.6rem 0 0;padding-left:1.3rem}.bottom{margin-top:1rem}footer .inner{min-height:5rem;font-size:.94rem}footer a{text-decoration:underline}
+  @media(max-width:42rem){.grid{grid-template-columns:1fr}.card{padding:1.15rem;gap:.8rem}.steps li{padding-left:3.25rem}.steps li::before{left:.85rem}}
+</style>

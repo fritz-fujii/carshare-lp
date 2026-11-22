@@ -7,7 +7,10 @@ const langItem: NavItem = isEN
   ? { title: "JP", url: "/" }
   : { title: "EN", url: "/en/" };
 
-const menuItems = [langItem];
+const guideItem = isEN
+  ? { title: "Driver’s guide", url: "/en/guide/" }
+  : { title: "ご利用ガイド", url: "/guide/" };
+const menuItems = [guideItem, langItem];
 ---
 
 <header

@@ -1,0 +1,8 @@
+---
+import Guide from "~/components/Guide.astro";
+import { topics } from "~/data/guide";
+export function getStaticPaths() {
+  return [undefined, ...topics.en.map(topic => topic.slug)].map(slug => ({ params: { slug } }));
+}
+---
+<Guide lang="en" slug={Astro.params.slug} />
