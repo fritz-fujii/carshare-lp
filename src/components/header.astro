@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import Icon from "./Icon.astro";
 import type { NavItem } from "~/types";
 
 const isEN = Astro.url.pathname.startsWith("/en");
@@ -31,6 +31,12 @@ const menuItems = [guideItem, langItem];
       ))}
     </ul>
   </nav>
+
+  <noscript>
+    <nav class="flex gap-4 sm:hidden" aria-label={isEN ? "Navigation" : "ナビゲーション"}>
+      {menuItems.map(({ title, url }) => <a href={url}>{title}</a>)}
+    </nav>
+  </noscript>
 
   <!-- モバイルハンバーガー -->
   <button id="open-nav-button" type="button" class="btn sm:hidden" aria-label="Navigation">
@@ -92,11 +98,8 @@ const menuItems = [guideItem, langItem];
   }
 </script>
 
-<noscript>
-  <style>#open-nav-button{display:none}</style>
-</noscript>
-
 <style>
+  @media (scripting: none) { #open-nav-button { display: none; } }
   .fixed-header{@apply fixed top-0 bottom-auto border-default bg-default text-default}
   .modal.is-open{@apply block}
 </style>
