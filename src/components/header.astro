@@ -100,6 +100,13 @@ const menuItems = [guideItem, langItem];
 
 <style>
   @media (scripting: none) { #open-nav-button { display: none; } }
-  .fixed-header{@apply fixed top-0 bottom-auto border-default bg-default text-default}
-  .modal.is-open{@apply block}
+  .fixed-header {
+    position: fixed;
+    top: 0;
+    bottom: auto;
+    border-color: var(--color-border);
+    background-color: var(--color-background);
+    color: var(--color-text);
+  }
+  .modal.is-open { display: block; }
 </style>

@@ -1,6 +1,42 @@
-@import "global.css";
-@import "theme.css";
+@import "tailwindcss" source("../");
+@import "./theme.css";
+@import "./global.css" layer(components);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --text-xs: clamp(0.868056rem, 0.0274123vw + 0.862573rem, 0.888889rem);
+  --text-xs--line-height: 1.6;
+  --text-sm: clamp(1rem, 0.0548245vw + 0.989035rem, 1.04167rem);
+  --text-sm--line-height: 1.6;
+  --text-lg: clamp(1.26563rem, 0.308388vw + 1.20395rem, 1.5rem);
+  --text-lg--line-height: 1.6;
+  --text-xl: clamp(1.42383rem, 0.494963vw + 1.32484rem, 1.8rem);
+  --text-xl--line-height: 1.2;
+  --text-3xl: clamp(1.80203rem, 1.03943vw + 1.59415rem, 2.592rem);
+  --text-3xl--line-height: 1.2;
+  --text-4xl: clamp(2.02729rem, 1.42515vw + 1.74226rem, 3.1104rem);
+  --text-4xl--line-height: 1.1;
+  --text-5xl: clamp(2.2807rem, 1.91024vw + 1.89865rem, 3.73248rem);
+  --text-5xl--line-height: 1.1;
+}
+
+@theme inline {
+  --color-primary: var(--site-primary);
+  --color-secondary: var(--site-secondary);
+}
+
+@utility text-default {
+  color: var(--color-text);
+}
+@utility text-offset {
+  color: var(--color-text-offset);
+}
+@utility bg-default {
+  background-color: var(--color-background);
+}
+@utility bg-offset {
+  background-color: var(--color-background-offset);
+}
+@utility border-default {
+  border-color: var(--color-border);
+}
