@@ -54,7 +54,7 @@ export const topics: Record<Language, Topic[]> = {
       summary: "スマートフォンをセンターコンソール内のANKERレシーバーにつなぎ、車のAUX入力で音楽を聴きます。",
       steps: [
         ["オーディオの音源をAUXにする", "停車中に車のオーディオで「AUX」を選びます。センターコンソール内にある、ANKERと書かれた黒い機器がBluetoothの接続先です。ケーブルはつないだままにしてください。", ["aux-receiver"]],
-        ["「Soundsync A3352」を選ぶ", "iPhoneは「設定」→「Bluetooth」、AndroidはBluetoothの設定を開き、機器一覧で「Soundsync A3352」を選びます。表示されないときはレシーバーの電源ボタンを確認してください。赤は電源OFFです。電源を入れて、もう一度機器を検索します。"],
+        ["「Soundsync A3352」を選ぶ", "iPhoneは「設定」→「Bluetooth」、AndroidはBluetoothの設定を開き、機器一覧で「Soundsync A3352」を選びます。表示されないときはレシーバーの電源ボタンを確認してください。赤は電源OFFです。電源を入れて、もう一度機器を検索します。レシーバーの説明書はセンターコンソールの中にあります。"],
         ["音が出ることを確かめる", "スマートフォンで曲を再生し、車のスピーカーから音が出たら音量を調整します。"],
         ["スマートフォンを充電する", "車内にUSB Type-CとLightningの充電ケーブルが各1本あります。スマートフォンの端子に合う方をお使いください。"],
         ["返却時に接続を解除する", "スマートフォンのBluetooth設定でレシーバーとの接続を解除します。"]
@@ -105,7 +105,7 @@ export const topics: Record<Language, Topic[]> = {
       summary: "Pair your phone with the ANKER receiver in the centre console and play music through the AUX input.",
       steps: [
         ["Select AUX on the car stereo", "While parked, select AUX as the audio source. Look inside the centre console for the black receiver marked ANKER. Leave its cables connected.", ["aux-receiver"]],
-        ["Select Soundsync A3352", "On iPhone, open Settings → Bluetooth. On Android, open Bluetooth settings. Select Soundsync A3352. If it does not appear, check the receiver’s power button. Red means the receiver is off. Turn it on and search again on your phone."],
+        ["Select Soundsync A3352", "On iPhone, open Settings → Bluetooth. On Android, open Bluetooth settings. Select Soundsync A3352. If it does not appear, check the receiver’s power button. Red means the receiver is off. Turn it on and search again on your phone. The receiver manual is inside the centre console."],
         ["Check the sound", "Play a track on your phone. When you hear it through the car speakers, adjust the volume."],
         ["Charge your phone", "The car has two charging cables, one USB-C and one Lightning. Use the one that fits your phone."],
         ["Disconnect before return", "Open Bluetooth settings on your phone and disconnect from the receiver."]
