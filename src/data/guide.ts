@@ -28,13 +28,14 @@ export const topics: Record<Language, Topic[]> = {
       slug: "pickup", icon: "mdi:key-outline", title: "車を受け取る",
       summary: "受け取り方法は予約チャットでお知らせします。オーナーが東京に不在のときはリモートで対応します。",
       pickupMethods: [
-        ["対面で受け取る場合", "到着したら、ご自身で鍵を取り出して車を開け、DriveShareアプリで前・後ろ・左・右の4方向を撮影してください。撮影が終わったらオーナーに連絡し、対面またはビデオ通話で、運転する方全員の顔と免許証原本の写真が一致することを確認してから出発します。"],
-        ["リモートで受け取る場合", "予約後、オーナーがDriveShareの予約チャットにLINEリンクを送ります。WhatsAppをご希望の場合はチャットでお知らせください。事前または当日の鍵の受け取り前にビデオ通話を行い、運転する方全員の顔と免許証原本の写真を照合します。確認後に暗証番号を受け取り、現地で鍵を取り出して車を開け、4方向を撮影してから出発してください。"]
+        ["対面で受け取る場合", "到着したら、ご自身で鍵を取り出して車を開け、DriveShareアプリで前・後ろ・左・右の4方向を撮影してください。撮影が終わったらオーナーに連絡し、対面またはビデオ通話で、オーナーが運転する方全員の顔と免許証原本の写真を照合します。"],
+        ["リモートで受け取る場合", "予約後、オーナーがDriveShareの予約チャットにLINEリンクを送ります。WhatsAppをご希望の場合はチャットでお知らせください。事前または当日の鍵の受け取り前にビデオ通話を行い、運転する方全員の顔と免許証原本の写真を照合します。確認後に暗証番号を受け取り、現地で鍵を取り出して車を開け、DriveShareアプリで車の前後左右を撮影してください。"]
       ],
       steps: [
         ["18番区画のキーボックスを見つける", "レクサスの左側（助手席側）を後輪まで進んでください。左後輪の後ろ、フェンスの下のほうに黒いキーボックスがあります。", ["key-box-location"]],
         ["鍵だけを取り出して車を開ける", "予約チャットで案内された暗証番号でキーボックスを開けます。鍵をポーチから出し、空のポーチはボックスの中に戻してください。ボックスを閉じてロックを確かめ、鍵で車を開けます。", ["key-box", "key-pouch"]],
-        ["DriveShareで車の前後左右を撮影する", "18番区画では、後部を撮影するスペースを作るため、周囲の安全を確認して車をゆっくり少し前に出してください。完全に停車し、シフトをPに入れて駐車ブレーキをかけてから車を降ります。DriveShareアプリの案内に沿って、車の前・後ろ・左・右を1枚ずつ撮影してください。対面受け取りの方は、4枚を撮り終えたらオーナーに連絡して本人確認を受けてください。"]
+        ["DriveShareで車の前後左右を撮影する", "18番区画では、後部を撮影するスペースを作るため、周囲の安全を確認して車をゆっくり少し前に出してください。完全に停車し、シフトをPに入れて駐車ブレーキをかけてから車を降ります。DriveShareアプリの案内に沿って、車の前・後ろ・左・右を1枚ずつ撮影してください。対面受け取りの方は、4枚を撮り終えたらオーナーに連絡して本人確認を受けてください。"],
+        ["「保険適用中」を確認して出発する", "車の前後左右の撮影と、オーナーによる運転者全員の免許証確認が両方終わったら、DriveShareアプリを開いてください。ステータスが「保険適用中」に変わったことを確認してから出発してください。"]
       ]
     },
     {
@@ -78,13 +79,14 @@ export const topics: Record<Language, Topic[]> = {
       slug: "pickup", icon: "mdi:key-outline", title: "Pick up the car",
       summary: "Your booking chat will tell you which pickup method to use. When the owner is away from Tokyo, pickup is remote.",
       pickupMethods: [
-        ["In-person pickup", "On arrival, collect the key yourself, unlock the car and use the DriveShare app to photograph the front, back, left side and right side. Once the photos are done, contact the owner. Before setting off, meet in person or by video so the owner can match each driver’s face to the photo on their original driving licence."],
-        ["Remote pickup", "After booking, the owner sends a LINE link in your DriveShare chat. Ask there if you prefer WhatsApp. Join a video call in advance or on pickup day before collecting the key. Have each driver’s original licence ready for the face check. After verification, you receive the code. Collect the key, unlock the car and take all four photos before setting off."]
+        ["In-person pickup", "On arrival, collect the key yourself, unlock the car and use the DriveShare app to photograph the front, back, left side and right side. Once the photos are done, contact the owner. Meet in person or by video so the owner can match each driver’s face to the photo on their original driving licence."],
+        ["Remote pickup", "After booking, the owner sends a LINE link in your DriveShare chat. Ask there if you prefer WhatsApp. Join a video call in advance or on pickup day before collecting the key. Have each driver’s original licence ready for the face check. After verification, you receive the code. Collect the key, unlock the car and take all four photos in the DriveShare app."]
       ],
       steps: [
         ["Find the key box at space 18", "Walk along the left (passenger) side of the Lexus to the rear wheel. Look low on the fence just behind that wheel for the black key box.", ["key-box-location"]],
         ["Take the key and leave the pouch in the box", "Open the box with the code from your booking chat. Remove the key from the pouch and put the empty pouch back inside the box. Close the box, check that it is locked and use the key to unlock the car.", ["key-box", "key-pouch"]],
-        ["Photograph all four sides in DriveShare", "In space 18, you need to pull forward a little to make room to photograph the rear. Check that the area is clear, then ease the car forward. Stop fully, shift into P and apply the parking brake before getting out. Follow the prompts in the DriveShare app to take one photo of each side: front, rear, left and right. For in-person pickup, contact the owner for the licence check once you have taken all four photos."]
+        ["Photograph all four sides in DriveShare", "In space 18, you need to pull forward a little to make room to photograph the rear. Check that the area is clear, then ease the car forward. Stop fully, shift into P and apply the parking brake before getting out. Follow the prompts in the DriveShare app to take one photo of each side: front, rear, left and right. For in-person pickup, contact the owner for the licence check once you have taken all four photos."],
+        ["Check the insurance status before setting off", "Once you have taken all four photos and the owner has checked every driver’s licence, check the status in the DriveShare app. Wait until it shows 「保険適用中」 (insurance active) before leaving the car park."]
       ]
     },
     {
