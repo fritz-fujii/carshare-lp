@@ -62,6 +62,23 @@ export const topics: Record<Language, Topic[]> = {
       note: "接続先が分からない場合は、停車したまま予約チャットでオーナーにご連絡ください。音が出ないときは、車の音源がAUXか、スマートフォンがレシーバーに接続されているかを確認してください。"
     },
     {
+      slug: "car-wash", icon: "mdi:car-wash", title: "洗車をするとき",
+      summary: "ガソリンスタンドなどの洗車機を使えます。普段の汚れなら、600円程度の水洗いコースで十分です。",
+      steps: [
+        ["右後ろのアンテナを外す", "車体右後ろのアンテナは逆ネジです。手でゆっくり緩めて取り外し、洗車が終わるまで車内に置いてください。"],
+        ["洗車機で水洗いする", "屋根と窓を完全に閉め、ドアミラーをたたみ、ワイパーをOFFにしてください。洗車機には車の前から入り、水洗いコースを選びます。"],
+        ["洗車後にアンテナを戻す", "走り出す前に、アンテナを右後ろの元の位置に取り付け、ドアミラーを開いてください。"]
+      ]
+    },
+    {
+      slug: "smoking", icon: "mdi:smoking", title: "喫煙するとき",
+      summary: "車内で喫煙するときは、必ず外気導入にして、窓を少し開けてください。",
+      steps: [
+        ["外気導入を確認する", "吸い始める前に、エアコンが「外気導入」になっていることを確認してください。「内気循環」になっていたら、「外気導入」に切り替えます。"],
+        ["窓を少し開ける", "吸い始める前に窓を少し開け、喫煙中はそのままにしてください。"]
+      ]
+    },
+    {
       slug: "return", icon: "mdi:parking", title: "車を返す",
       summary: "ハイオク満タン、鍵の返却、写真3枚の送信で完了です。",
       steps: [
@@ -111,6 +128,23 @@ export const topics: Record<Language, Topic[]> = {
         ["Disconnect before return", "Open Bluetooth settings on your phone and disconnect from the receiver."]
       ],
       note: "If you are unsure which device to select, stay parked and contact the owner in your booking chat. If there is no sound, check that the stereo is set to AUX and your phone is connected to the receiver."
+    },
+    {
+      slug: "car-wash", icon: "mdi:car-wash", title: "Wash the car",
+      summary: "You can use an automatic car wash at a petrol station. A basic water-only wash (水洗い), around ¥600, is enough for everyday dirt.",
+      steps: [
+        ["Remove the rear-right antenna", "The antenna at the rear right of the car has a reverse thread. Gently unscrew it by hand and leave it inside the car during the wash."],
+        ["Use the water-only wash", "Close the roof and windows fully, fold in the door mirrors and switch the wipers off. Enter the car wash front first and select the water-only programme."],
+        ["Refit the antenna after the wash", "Before driving away, screw the antenna back into its mount at the rear right and unfold the door mirrors."]
+      ]
+    },
+    {
+      slug: "smoking", icon: "mdi:smoking", title: "Smoking in the car",
+      summary: "If you smoke in the car, always use fresh-air mode and keep a window slightly open.",
+      steps: [
+        ["Check the fresh-air setting", "Before lighting up, check the climate controls. If recirculation (内気循環) is on, switch to fresh-air mode (外気導入)."],
+        ["Open a window slightly", "Open a window a little before lighting up and leave it open while you smoke."]
+      ]
     },
     {
       slug: "return", icon: "mdi:parking", title: "Return the car",
