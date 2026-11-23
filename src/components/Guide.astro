@@ -1,6 +1,6 @@
 ---
 import Icon from "./Icon.astro";
-import { topics, type Language } from "~/data/guide";
+import { guidePhotos, topics, type Language } from "~/data/guide";
 interface Props { lang: Language; slug?: string }
 const { lang, slug } = Astro.props;
 const en = lang === "en";
@@ -42,7 +42,15 @@ const intro = en ? "Choose a guide for your journey in the Lexus IS250C." : "レ
       <div class="title"><Icon class="symbol" name={topic.icon} /><h1>{topic.title}</h1></div>
       <p class="lead">{topic.summary}</p>
       <ol class="steps">
-        {topic.steps.map(([heading, body]) => <li><h2>{heading}</h2><p>{body}</p></li>)}
+        {topic.steps.map(([heading, body, photos]) => <li>
+          <h2>{heading}</h2><p>{body}</p>
+          {photos && <div class="step-photos">
+            {photos.map(id => {
+              const photo = guidePhotos[id];
+              return <img src={`/images/guide/${id}.jpg`} alt={photo[lang]} width={photo.width} height={photo.height} loading="lazy" decoding="async" />;
+            })}
+          </div>}
+        </li>)}
       </ol>
       {topic.note && <aside><h2>{en ? "Need help?" : "困ったときは"}</h2><p>{topic.note}</p></aside>}
       {topic.checklist && <aside><h2>{en ? "Photos to send" : "送る写真はこの3枚"}</h2><ul>{topic.checklist.map(label => <li>{label}</li>)}</ul></aside>}
@@ -76,6 +84,8 @@ const intro = en ? "Choose a guide for your journey in the Lexus IS250C." : "レ
   .steps{list-style:none;counter-reset:step;margin:2rem 0 0;padding:0;background:#fff;border:1px solid #d8dfe5;border-radius:.65rem}
   .steps li{position:relative;counter-increment:step;padding:1.4rem 1.25rem 1.4rem 4rem}
   .steps li+li{border-top:1px solid #e2e6ea}.steps li::before{content:counter(step);position:absolute;left:1.2rem;top:1.35rem;width:1.8rem;height:1.8rem;text-align:center;line-height:1.8rem;border-radius:50%;background:#203750;color:white;font-weight:700}
+  .step-photos{display:flex;flex-wrap:wrap;align-items:flex-start;gap:1rem;margin-top:1rem}
+  .step-photos img{display:block;width:auto;height:auto;max-width:100%;max-height:22rem;border-radius:.4rem}
   .steps p,aside p{margin-top:.45rem}aside{margin-top:1.25rem;background:#e9f1f6;border-left:4px solid #587995;padding:1.3rem}
   aside ul{margin:.6rem 0 0;padding-left:1.3rem}.bottom{margin-top:1rem}footer .inner{min-height:5rem;font-size:.94rem}footer a{text-decoration:underline}
   @media(max-width:42rem){.grid{grid-template-columns:1fr}.card{padding:1.15rem;gap:.8rem}.steps li{padding-left:3.25rem}.steps li::before{left:.85rem}}
