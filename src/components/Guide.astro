@@ -41,6 +41,15 @@ const intro = en ? "Choose a guide for your journey in the Lexus IS250C." : "レ
       <a class="back" href={base}><Icon name="mdi:chevron-left" />{guideTitle}</a>
       <div class="title"><Icon class="symbol" name={topic.icon} /><h1>{topic.title}</h1></div>
       <p class="lead">{topic.summary}</p>
+      {(slug === "pickup" || slug === "return") && <p class="map-link">
+        <a href="https://maps.app.goo.gl/vW7hXMKLqagPzP9S9">{en ? "Space 18 · Open the car park in Google Maps" : "18番区画の駐車場をGoogleマップで開く"}</a>
+      </p>}
+      {topic.pickupMethods && <>
+        <div class="methods">
+          {topic.pickupMethods.map(([heading, body]) => <section><h2>{heading}</h2><p>{body}</p></section>)}
+        </div>
+        <h2>{en ? "At the car park" : "駐車場での鍵の取り出し方と撮影"}</h2>
+      </>}
       <ol class="steps">
         {topic.steps.map(([heading, body, photos]) => <li>
           <h2>{heading}</h2><p>{body}</p>
@@ -81,6 +90,10 @@ const intro = en ? "Choose a guide for your journey in the Lexus IS250C." : "レ
   .card p{margin-top:.5rem}.symbol{flex:none;width:2rem;height:2rem;color:#355574}
   .chevron{color:#526880}.article{max-width:51rem;padding-block:1rem 3rem}
   .title{display:flex;align-items:center;gap:1rem;margin-top:1.3rem}.title h1{font-size:clamp(1.6rem,5vw,2.55rem)}
+  .map-link{margin-top:.7rem}.map-link a{color:#294e79;text-decoration:underline;text-underline-offset:.18em}
+  .methods{display:grid;gap:1rem;margin:1.4rem 0 2rem}
+  .methods section{padding:1rem 1.25rem;border-left:3px solid #587995;background:#fff}
+  .methods p{margin-top:.4rem}.methods+h2+.steps{margin-top:.7rem}
   .steps{list-style:none;counter-reset:step;margin:2rem 0 0;padding:0;background:#fff;border:1px solid #d8dfe5;border-radius:.65rem}
   .steps li{position:relative;counter-increment:step;padding:1.4rem 1.25rem 1.4rem 4rem}
   .steps li+li{border-top:1px solid #e2e6ea}.steps li::before{content:counter(step);position:absolute;left:1.2rem;top:1.35rem;width:1.8rem;height:1.8rem;text-align:center;line-height:1.8rem;border-radius:50%;background:#203750;color:white;font-weight:700}
