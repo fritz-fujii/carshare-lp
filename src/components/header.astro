@@ -15,8 +15,8 @@ const menuItems = [guideItem, langItem];
 
 <header
   id="page-header"
-  class="absolute bottom-0 z-20 flex w-full items-center justify-between
-         border-b border-transparent px-8 py-4 text-white"
+  class="sticky top-0 z-20 flex w-full items-center justify-between
+         border-b border-default bg-default px-6 py-3 text-default"
 >
   <!-- テキストロゴ -->
   <a class="text-lg font-semibold hover:underline" href={isEN ? "/en/" : "/"}>
@@ -71,22 +71,13 @@ const menuItems = [guideItem, langItem];
   const menuModalId = "menu-modal";
 
   /* Type-safe Element 取得 */
-  const header = document.getElementById("page-header");
   const openBtn = document.getElementById("open-nav-button");
   const closeBtn = document.getElementById("close-nav-button");
   const menu = document.querySelector(`#${menuModalId} ul`);
 
-  if (header && openBtn && closeBtn && menu) {
-    const page = document.documentElement;
-
+  if (openBtn && closeBtn && menu) {
     openBtn.addEventListener("click", () => MicroModal.show(menuModalId, { disableScroll: true }));
     closeBtn.addEventListener("click", () => MicroModal.close(menuModalId));
-
-    /* スクロールで固定 */
-    document.addEventListener("scroll", () => {
-      const threshold = page.clientHeight - page.scrollTop - (header).offsetHeight;
-      header.classList.toggle("fixed-header", threshold < 0);
-    });
 
     /* モバイルメニューでリンククリック後に閉じる */
     menu.addEventListener("click", (e) => {
@@ -100,13 +91,5 @@ const menuItems = [guideItem, langItem];
 
 <style>
   @media (scripting: none) { #open-nav-button { display: none; } }
-  .fixed-header {
-    position: fixed;
-    top: 0;
-    bottom: auto;
-    border-color: var(--color-border);
-    background-color: var(--color-background);
-    color: var(--color-text);
-  }
   .modal.is-open { display: block; }
 </style>
